@@ -31,7 +31,7 @@ class User(db.Model, UserMixin):
 
 
 class BlogPost(db.Model):
-	__tablename__ = ''
+	__tablename__ = 'blogposts'
 
 	users = db.relationship(User)
 
