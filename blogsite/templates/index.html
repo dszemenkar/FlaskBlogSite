@@ -3,20 +3,20 @@
 	<div class="jumbotron">
 	  <h1 class="display-4">Hello, world!</h1>
 	  <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-
+<br>
 	{% for post in blogposts.items %}
-	  <div class="card">
-	  <h5 class="card-header">Published: {{post.date.strftime("%Y-%m-%d")}}</h5>
-	  <div class="card-body">
-	    <h5 class="card-title"><a href="{{url_for('blogposts.blogpost', blogpost_id=post.id)}}">{{post.title}}</a>
 
-	    <p class="card-text"><p>Written by <a href="{{url_for('users.user_posts', username=post.author.username)}}">{{post.author.username}}</h5>
-	    	<br>
-	    {{post.text}}</p>
-
-	  </div>
-	</div>
+<div class="card" style="max-width: 750px;">
+  <img src="{{url_for('static', filename='posts/' + post.picture)}}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title"><a href="{{ url_for('blogposts.blogpost', blogpost_id=post.id) }}">{{post.title}}</a></h5>
+    <p>Published: {{post.date.strftime("%Y-%m-%d")}}. Written by <a href="{{url_for('users.user_posts', username=post.author.username)}}">{{post.author.username}}</a></p>
+    <p class="card-text">{{post.text}}</p>
+  </div>
+</div>
+<br>
 	{% endfor %}
+	
 	</div>
 
 	<nav aria-label="Page navigation example">

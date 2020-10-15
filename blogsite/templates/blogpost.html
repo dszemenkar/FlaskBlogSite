@@ -1,14 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
 
-	  <div class="card">
-	  <h5 class="card-header">Published: {{post.date.strftime("%Y-%m-%d")}}</h5>
-	  <div class="card-body">
-	    <h5 class="card-title"><a href="{{url_for('blogposts.blogpost', blogpost_id=post.id)}}">{{post.title}}</a>
+<div class="card" style="max-width: 750px;">
+  <img src="{{url_for('static', filename='posts/' + post.picture)}}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{post.title}}</h5>
+    <p>Published: {{post.date.strftime("%Y-%m-%d")}}. Written by <a href="{{url_for('users.user_posts', username=post.author.username)}}">{{post.author.username}}</a></p>
+    <p class="card-text">{{post.text}}</p>
+  </div>
+</div>
 
-	    <p class="card-text"><p>Written by <a href="{{url_for('users.user_posts', username=post.author.username)}}">{{post.author.username}}</h5>
-	    	<br>
-	    {{post.text}}</p>
 
 	    {% if post.author == current_user %}
 			<a href="{{url_for('blogposts.update', blogpost_id=post.id)}}"><button type="button" class="btn btn-warning">Update</button></a>

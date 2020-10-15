@@ -1,8 +1,8 @@
-"""first migration
+"""Added images to posts.
 
-Revision ID: 4b787b7ae35c
+Revision ID: d919b442b4f4
 Revises: 
-Create Date: 2020-10-15 12:06:07.778545
+Create Date: 2020-10-15 16:47:15.324759
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '4b787b7ae35c'
+revision = 'd919b442b4f4'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -31,6 +31,7 @@ def upgrade():
     op.create_table('blogposts',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
+    sa.Column('picture', sa.String(length=64), nullable=False),
     sa.Column('date', sa.DateTime(), nullable=False),
     sa.Column('title', sa.String(length=140), nullable=False),
     sa.Column('text', sa.Text(), nullable=False),

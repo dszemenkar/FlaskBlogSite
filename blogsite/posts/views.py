@@ -3,6 +3,7 @@ from flask_login import current_user, login_required
 from blogsite import db
 from blogsite.models import BlogPost
 from blogsite.posts.forms import BlogPostForm
+from blogsite.posts.picture_handler import add_pic
 
 blogposts = Blueprint('blogposts', __name__)
 
@@ -12,7 +13,12 @@ def create():
 	form = BlogPostForm()
 
 	if form.validate_on_submit():
+		filename = 'default.png'
+		if form.picture.data:
+			filename = add_pic(form.picture.data)
+
 		blogpost = BlogPost(title=form.title.data,
+							picture=filename,
 							text=form.text.data,
 							user_id=current_user.id)
 		db.session.add(blogpost)
@@ -33,7 +39,12 @@ def update(blogpost_id):
 
 	form = BlogPostForm()
 	if form.validate_on_submit():
+		filename = 'default.png'
+		if form.picture.data:
+			filename = add_pic(form.picture.data)
+
 		blogpost.title = form.title.data
+		blogpost.picture = filename
 		blogpost.text = form.text.data
 		db.session.add(blogpost)
 		db.session.commit()

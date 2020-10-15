@@ -4,12 +4,15 @@
     
     <p class="lead">Create new post</p>
 
-	<form class="form-group" method="POST">
+  <form method="POST" action="" enctype="multipart/form-data">
   		
 			{{ form.hidden_tag() }}
     <div class="form-group">
   			{{ form.title.label(class='form-group') }} {{ form.title(class='form-control') }}<br>
 		</div>
+    <div class="form-group">
+        {{ form.picture.label(class='form-group')  }} {{ form.picture(class="form-control")  }}<br>
+      </div>
 		<div class="form-group">
   			{{ form.text.label(class='form-group')  }} {{ form.text(class="form-control")  }}<br>
   		</div>
